@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 4349610279478245593}
   - component: {fileID: 7209301233352353745}
   - component: {fileID: 3430417092626598385}
+  - component: {fileID: 3788120265321039446}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -410,3 +411,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fa099814c37e241a34c990fa2f8000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionScript
+--- !u!114 &3788120265321039446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7139532576386138553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e4464e2df211c4491ab689e87237b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectible
+  score: 1

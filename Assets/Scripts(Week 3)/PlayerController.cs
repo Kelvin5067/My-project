@@ -2,46 +2,47 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject[] collectibles;
+    GameObject currentCollectable;
 
     public int collectedCount = 0;
-
-    void OnCollisionEnter(Collision collision)
-    {
-        print("Collision detected with " + collision.gameObject.name);
-
-        for(int i = 0; i < collectibles.Length; i++)
-        {
-            if(collision.gameObject == collectibles[i])
-            {
-                Destroy(collision.gameObject);
-
-                collectedCount++;
-
-                print("Collected: " + collectedCount);
-
-                if(collectedCount == collectibles.Length)
-                {
-                    print("All collectibles collected!");
-                }
-            }
-        }
-    }
+    public int currentScore = 0;
 
     void OnTriggerEnter(Collider other)
     {
-        print("Trigger entered by " + other.gameObject.name);
-
-        if(other.gameObject.name == "TriggerZone")
+        if (other.gameObject.tag == "Collectible")
         {
-            if(collectedCount == collectibles.Length)
-            {
-                print("Player entered after collecting ALL collectibles!");
-            }
-            else
-            {
-                print("Please collect all collectibles first!");
-            }
+            currentCollectable = other.gameObject;
+        }
+
+        if (other.gameObject.tag == "GoalArea" && collectedCount >= 7)
+        {
+            print("Player entered goal area with " + collectedCount + " collectibles");
+            print("Final score: " + currentScore);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == currentCollectable)
+        {
+            currentCollectable = null;
+        }
+    }
+
+    void OnInteract()
+    {
+        if (currentCollectable != null)
+        {
+            Collectible collectibleScript = currentCollectable.GetComponent<Collectible>();
+
+            collectedCount++;
+            currentScore += collectibleScript.score;
+
+            print("Player has collected " + collectedCount + " collectibles");
+            print("Current score: " + currentScore);
+
+            Destroy(currentCollectable);
+            currentCollectable = null;
         }
     }
 }
