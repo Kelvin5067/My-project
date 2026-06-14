@@ -9,6 +9,7 @@ TagManager:
   - Collider
   - GoalArea
   - Door
+  - Lava
   layers:
   - Default
   - TransparentFX
